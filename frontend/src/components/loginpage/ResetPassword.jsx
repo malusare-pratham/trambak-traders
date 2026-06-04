@@ -1,27 +1,35 @@
 import React, { useState } from "react";
+import "./LoginPage.css";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { apiUrl } from "../../config/api";
+import { Eye, EyeOff } from "lucide-react";
 
-const ResetPassword = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
-  const { token } = useParams();
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
 
-  const handleResetPassword = async (e) => {
+  // 🔹 NEW STATE
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  // 🔹 LOGIN FUNCTION
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match!");
-      return;
-    }
+
     try {
-      await axios.post(apiUrl(`/api/admin/reset-password/${token}`), { password });
-      setMessage("Password reset successfully! Redirecting to login...");
-      setTimeout(() => navigate("/login"), 2000);
+      const res = await axios.post(
+        apiUrl("/api/admin/login"),
+        { email, password }
+      );
+
+      // token save
+      localStorage.setItem("token", res.data.token);
+
+      // admin page ला redirect
+      navigate("/dashboard");
     } catch (err) {
-      setMessage("Error resetting password. Token may be invalid or expired.");
+      alert("❌ Invalid Email or Password");
     }
   };
 
@@ -37,38 +45,59 @@ const ResetPassword = () => {
       }}
     >
       <div className="login-card">
+        {/* Logo + Title */}
         <div className="brand">
           <h2>Trambakraj Traders</h2>
         </div>
-        <form className="login-form" onSubmit={handleResetPassword}>
+
+        {/* Form */}
+        <form className="login-form" onSubmit={handleLogin}>
+          <div className="input-group">
+            <span className="icon">👤</span>
+            <input
+              type="email"
+              placeholder="Email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
           <div className="input-group">
             <span className="icon">🔒</span>
             <input
-              type="password"
-              placeholder="New Password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword((value) => !value)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
           </div>
-          <div className="input-group">
-            <span className="icon">🔒</span>
-            <input
-              type="password"
-              placeholder="Confirm New Password"
-              required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+
+          <div className="forgot">
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/forgot-password")}
+            >
+              Forgot Password?
+            </span>
           </div>
+
           <button type="submit" className="login-btn">
-            Reset Password
+            Login
           </button>
-          {message && <p style={{ color: "green", textAlign: "center" }}>{message}</p>}
         </form>
       </div>
     </div>
   );
 };
 
-export default ResetPassword;
+export default LoginPage;//old 
