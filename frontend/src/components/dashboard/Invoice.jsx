@@ -278,7 +278,6 @@ const Invoice = () => {
               </div>
             </div>
 
-            <div className="form-actions">
             <button type="button" onClick={handleBillCreate} className="submit-btn">
               बिल तयार करा
             </button>
@@ -286,11 +285,11 @@ const Invoice = () => {
             <button 
               type="button" 
               onClick={downloadPDF} 
-              className="submit-btn pdf-btn" 
+              className="submit-btn" 
+              style={{ marginTop: "12px", backgroundColor: "#4CAF50" }}
             >
               फक्त डाउनलोड करा (PDF)
             </button>
-            </div>
           </form>
           {error && <p className="error-msg">{error}</p>}
         </div>
