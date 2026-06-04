@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Page wrapper */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffffee;
+  border-radius: 18px;
+  padding: 32px 28px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+/* Brand */
+.brand {
+  margin-bottom: 24px;
+}
+
+.brand-logo {
+  width: 60px;
+  margin-bottom: 8px;
+}
+
+.brand h2 {
+  color: #1E6F3D;
+  font-weight: 600;
+}
+
+/* Inputs */
+.input-group {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 14px 12px 40px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.input-group .icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+}
+
+/* Forgot Password */
+.forgot {
+  text-align: right;
+  margin-bottom: 14px;
+}
+
+.forgot a {
+  color: #6B4F2D;        /* brown */
+  font-size: 13px;
+  text-decoration: none; /* no underline */
+}
+
+.forgot a:hover {
+  color: #1E6F3D;        /* green on hover */
+}
+
+/* Buttons */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #1E6F3D;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 11px;
+  background: #F4C430;
+  border: none;
+  border-radius: 12px;
+  margin-top: 10px;
+}
