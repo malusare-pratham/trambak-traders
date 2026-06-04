@@ -102,8 +102,8 @@ const RecordsTable = ({ records = [], onRecordsChange, onEditClick }) => {
   };
 
   return (
-    <div className="card">
-      <h2>रेकॉर्ड्स ({filterDate === today ? "आजचे रेकॉर्ड्स" : filterDate})</h2>
+    <div className="card records-card">
+      <h2 className="records-title">रेकॉर्ड्स ({filterDate === today ? "आजचे रेकॉर्ड्स" : filterDate})</h2>
 
       <div className="filters">
         <input className="filter-input" placeholder="नाव शोधा" value={searchName} onChange={(e) => { setSearchName(e.target.value); setCurrentPage(1); }} />
@@ -115,7 +115,7 @@ const RecordsTable = ({ records = [], onRecordsChange, onEditClick }) => {
         <label className="filter-checkbox"><input type="checkbox" checked={onlyPaid} onChange={(e) => { setOnlyPaid(e.target.checked); if (e.target.checked) setOnlyDue(false); setCurrentPage(1); }} />पूर्ण दिलेले</label>
       </div>
 
-      <div className="table-responsive" style={{ width: '100%', overflowX: 'hidden' }}>
+      <div className="table-responsive records-table-wrap" style={{ width: '100%', overflowX: 'auto' }}>
         <table className="records-table" style={{ width: '100%', fontSize: '14px', borderCollapse: 'collapse', textAlign: 'center' }}>
           <thead>
             <tr style={{ backgroundColor: '#f8f9fa' }}>
@@ -187,13 +187,13 @@ const RecordsTable = ({ records = [], onRecordsChange, onEditClick }) => {
         </div>
       )}
 
-      <div className="csv-actions" style={{ marginTop: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ display: "flex", gap: "10px" }}>
+      <div className="csv-actions records-actions" style={{ marginTop: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div className="csv-button-group" style={{ display: "flex", gap: "10px" }}>
           <button className="primary-btn" onClick={handleExportCSV} style={{ backgroundColor: '#2196F3', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer' }}>CSV एक्सपोर्ट 📤</button>
           <input type="file" accept=".csv" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImportCSV} />
           <button className="primary-btn" onClick={() => fileInputRef.current.click()} style={{ backgroundColor: '#2196F3', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer' }}>CSV इंपोर्ट 📥</button>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#e3f2fd', padding: '5px 15px', borderRadius: '25px' }}>
+        <div className="records-pagination" style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#e3f2fd', padding: '5px 15px', borderRadius: '25px' }}>
           <button disabled={currentPage === 1} onClick={() => setCurrentPage(prev => prev - 1)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#2196F3', fontSize: '18px' }}>◀</button>
           <span style={{ fontWeight: 'bold', color: '#2196F3' }}>पाने {currentPage} / {totalPages || 1}</span>
           <button disabled={currentPage >= totalPages} onClick={() => setCurrentPage(prev => prev + 1)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#2196F3', fontSize: '18px' }}>▶</button>

@@ -46,7 +46,7 @@ const Dashboard = () => {
       
       {/* --- प्रीमियम हेडर --- */}
       <div style={{ textAlign: "center", padding: "20px 10px 5px 10px" }}>
-        <h1 style={{
+        <h1 className="dashboard-brand-title" style={{
             margin: 0, fontSize: "clamp(28px, 8vw, 42px)", fontWeight: "900", textAlign: "center",
             background: "linear-gradient(to bottom, #1a4a8e, #0d2d5e)",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
@@ -63,7 +63,7 @@ const Dashboard = () => {
       </div>
 
       {/* --- 1. Admin and Logout Buttons --- */}
-      <div style={{
+      <div className="dashboard-actions" style={{
         maxWidth: "1150px",
         margin: "0 auto 10px auto",
         padding: "0 10px",
@@ -72,6 +72,7 @@ const Dashboard = () => {
         gap: "10px"
       }}>
         <div
+          className="dashboard-action-btn"
           onClick={() => {
             localStorage.removeItem("token");
             navigate("/login");
@@ -104,6 +105,7 @@ const Dashboard = () => {
           <span>Logout</span>
         </div>
         <div
+          className="dashboard-action-btn"
           onClick={() => navigate("/admin")}
           style={{
             display: "flex",
@@ -140,7 +142,7 @@ const Dashboard = () => {
         margin: "0 0 15px 0",
         padding: 0,
       }}>
-        <div style={{
+        <div className="market-strip" style={{
           width: "100%",
           display: "flex",
           alignItems: "center",
@@ -153,7 +155,7 @@ const Dashboard = () => {
           boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
         }}>
           {/* Label Section */}
-          <div style={{
+          <div className="market-label" style={{
             backgroundColor: "#2196F3", // नवीन कलर
             color: "white",
             padding: "0 25px",

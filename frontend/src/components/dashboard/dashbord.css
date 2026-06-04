@@ -129,4 +129,107 @@ table {
     gap: 16px;
   }
 }
+
+@media (max-width: 768px) {
+  .main-wrapper {
+    padding: 12px !important;
+  }
+
+  .bill-container {
+    padding: 0 8px 8px !important;
+  }
+
+  .dashboard-actions {
+    justify-content: stretch !important;
+    flex-wrap: nowrap;
+  }
+
+  .dashboard-action-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    padding: 10px 12px !important;
+  }
+
+  .dashboard-action-btn span {
+    white-space: nowrap;
+  }
+
+  .market-strip {
+    height: 56px !important;
+  }
+
+  .market-label {
+    padding: 0 14px !important;
+    font-size: 14px !important;
+  }
+
+  .market-ticker {
+    font-size: 16px;
+  }
+
+  .invoice-left,
+  .invoice-right {
+    padding: 18px;
+    border-radius: 10px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .table-wrapper table {
+    min-width: 560px;
+  }
+
+  .summary span {
+    width: 105px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-wrapper {
+    padding: 8px !important;
+  }
+
+  .invoice-left,
+  .invoice-right {
+    padding: 14px;
+  }
+
+  .market-strip {
+    height: 52px !important;
+  }
+
+  .dashboard-actions {
+    gap: 8px !important;
+  }
+
+  .dashboard-action-btn {
+    gap: 6px !important;
+    padding: 9px 8px !important;
+    font-size: 13px !important;
+  }
+
+  .market-label {
+    padding: 0 10px !important;
+    font-size: 12px !important;
+  }
+
+  .market-label svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .market-ticker {
+    font-size: 14px;
+  }
+
+  .footer {
+    gap: 16px;
+    margin-top: 28px !important;
+  }
+}
 /*-----------------------------------------*/

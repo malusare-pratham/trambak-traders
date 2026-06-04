@@ -97,4 +97,68 @@
   border-top: 1px solid #eee;
 }
 
+.report-page {
+  max-width: 1200px;
+  width: calc(100% - 32px);
+  margin: 20px auto;
+}
+
+.range-filter-bar {
+  flex-wrap: wrap;
+}
+
+.range-filter-bar button {
+  min-height: 42px;
+}
+
+.custom-date-inputs input {
+  min-width: 160px;
+}
+
+@media (max-width: 768px) {
+  .report-page {
+    width: calc(100% - 20px);
+    padding: 16px;
+  }
+
+  .range-filter-bar {
+    gap: 10px;
+    justify-content: stretch;
+  }
+
+  .range-filter-bar button {
+    flex: 1 1 calc(50% - 10px);
+    padding: 10px 12px;
+  }
+
+  .custom-date-inputs {
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .custom-date-inputs input {
+    flex: 1 1 160px;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .report-page {
+    width: 100%;
+    margin: 12px 0;
+    padding: 14px;
+    border-radius: 8px;
+  }
+
+  .range-filter-bar button {
+    flex-basis: 100%;
+  }
+
+  .custom-date-inputs {
+    flex-direction: column;
+  }
+}
+
 

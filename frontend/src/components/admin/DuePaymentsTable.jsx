@@ -47,16 +47,17 @@ const DuePaymentsTable = ({ onEditClick }) => {
   if (loading) return <div style={{ padding: '50px', textAlign: 'center' }}>🔄 डेटा लोड होत आहे...</div>;
 
   return (
-    <div className="card">
+    <div className="card payment-report-card">
       {/* 🟢 मागे जाण्याचे बटन आणि टायटल */}
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', gap: '15px' }}>
+      <div className="report-header payment-report-header" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', gap: '15px' }}>
         <button 
+          className="back-btn"
           onClick={() => window.history.back()} 
           style={{ padding: '8px 15px', backgroundColor: '#607d8b', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}
         >
           ◀ मागे
         </button>
-        <h2 style={{ color: '#d32f2f', margin: 0 }}>बाकी पेमेंट रिपोर्ट (एकूण: {dueRecordsOnly.length})</h2>
+        <h2 className="report-title" style={{ color: '#d32f2f', margin: 0 }}>बाकी पेमेंट रिपोर्ट (एकूण: {dueRecordsOnly.length})</h2>
       </div>
 
       <div className="filters">
@@ -112,7 +113,7 @@ const DuePaymentsTable = ({ onEditClick }) => {
       </div>
 
       {/* 🟢 पेज नेव्हिगेशन (◀ पाने 1 / 2 ▶)Prathmesh Malusare  */}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', gap: '20px', fontSize: '18px' }}>
+      <div className="pagination-wrap" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', gap: '20px', fontSize: '18px' }}>
         <button 
           disabled={currentPage === 1} 
           onClick={() => setCurrentPage(prev => prev - 1)}

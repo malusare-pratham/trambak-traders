@@ -9,8 +9,9 @@ const AdminHeader = () => {
   return (
     <>
       {/* ❌ वरचा header untouched */}
-      <div style={{ textAlign: "center", padding: "30px 10px 15px 10px" }}>
+      <div className="admin-brand" style={{ textAlign: "center", padding: "30px 10px 15px 10px" }}>
         <h1
+          className="admin-brand-title"
           style={{
             margin: 0,
             fontSize: "42px",
@@ -29,6 +30,7 @@ const AdminHeader = () => {
       </div>
 
       <nav
+        className="admin-nav"
         style={{
           display: "flex",
           justifyContent: "center",
@@ -77,6 +79,7 @@ const NavItem = ({ icon, label, active, onClick }) => {
 
   return (
     <div
+      className={`admin-nav-item${active ? " is-active" : ""}`}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -95,7 +98,7 @@ const NavItem = ({ icon, label, active, onClick }) => {
       }}
     >
       {icon}
-      <span>{label}</span>
+      <span className="admin-nav-label">{label}</span>
     </div>
   );
 };

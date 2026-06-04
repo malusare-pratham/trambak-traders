@@ -72,8 +72,9 @@ const ReportTable = () => {
     <div className="card report-page">
 
       {/* 🔙 Back */}
-      <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
+      <div className="report-header" style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
         <button
+          className="back-btn"
           onClick={() => navigate(-1)}
           style={{
             padding: "8px 15px",
@@ -87,7 +88,7 @@ const ReportTable = () => {
         >
           ◀ मागे जा
         </button>
-        <h2 style={{ margin: "0 auto" }}>📊 रिपोर्ट</h2>
+        <h2 className="report-title" style={{ margin: "0 auto" }}>📊 रिपोर्ट</h2>
       </div>
 
       {/* 🔘 Date Filter */}
@@ -159,12 +160,12 @@ const ReportTable = () => {
       </div>
 
       {/* ✅ Pagination RIGHT side – Blue Pill */}
-      <div style={{
+      <div className="pagination-wrap" style={{
         display: "flex",
         justifyContent: "flex-end",
         marginTop: "15px"
       }}>
-        <div style={{
+        <div className="pagination-pill" style={{
           background: "#E3F2FD",
           color: "#2196F3",
           padding: "6px 14px",

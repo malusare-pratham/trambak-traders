@@ -371,6 +371,7 @@ th,
   gap: 6px;
   font-weight: 600;
   white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .filter-checkbox input[type="checkbox"] {
@@ -388,6 +389,14 @@ th,
 
   .filter-input {
     width: 100%;
+  }
+
+  .filter-checkbox {
+    display: inline-flex;
+    width: calc(50% - 6px);
+    min-width: 0;
+    justify-content: center;
+    font-size: 13px;
   }
 }
 
@@ -951,3 +960,276 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }  
+
+/* =====================================================
+   RESPONSIVE ADMIN NAV + REPORT PAGES
+===================================================== */
+.admin-brand-title,
+.dashboard-brand-title {
+  display: inline-block;
+  max-width: 100%;
+  line-height: 1.14;
+  letter-spacing: 0 !important;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  white-space: nowrap;
+}
+
+.admin-nav {
+  flex-wrap: wrap;
+}
+
+.admin-nav-item {
+  min-height: 44px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  justify-content: center;
+  user-select: none;
+}
+
+.admin-nav-label {
+  white-space: nowrap;
+}
+
+.payment-report-card {
+  max-width: 1200px;
+  width: calc(100% - 32px);
+  margin: 20px auto;
+}
+
+.report-header {
+  width: 100%;
+}
+
+.report-title {
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.back-btn {
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive .records-table {
+  min-width: 760px;
+}
+
+.records-title {
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.records-table-wrap {
+  border-radius: 8px;
+}
+
+.records-table-wrap .records-table {
+  min-width: 980px;
+}
+
+.records-table-wrap .records-table th,
+.records-table-wrap .records-table td {
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.records-table-wrap .records-table th:nth-child(2),
+.records-table-wrap .records-table td:nth-child(2) {
+  min-width: 190px;
+}
+
+.records-actions {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.csv-button-group {
+  flex-wrap: wrap;
+}
+
+.records-pagination {
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+.pagination-wrap {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.pagination-pill button,
+.pagination-wrap button {
+  min-width: 36px;
+  min-height: 36px;
+}
+
+@media (max-width: 900px) {
+  .admin-container {
+    padding: 16px;
+  }
+
+  .admin-brand {
+    padding: 22px 8px 12px !important;
+  }
+
+  .admin-brand-title {
+    font-size: clamp(28px, 7vw, 38px) !important;
+    letter-spacing: 0 !important;
+  }
+
+  .admin-nav {
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+
+  .admin-nav-item {
+    flex: 1 1 calc(50% - 10px);
+    padding: 10px 12px !important;
+    border-radius: 8px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-brand-title,
+  .dashboard-brand-title {
+    font-size: clamp(24px, 8vw, 34px) !important;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 360px) {
+  .admin-brand-title,
+  .dashboard-brand-title {
+    font-size: 23px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-container {
+    padding: 10px;
+  }
+
+  .admin-nav {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .admin-nav-item {
+    flex: 0 0 auto !important;
+    min-width: 0;
+    width: max-content;
+    gap: 6px !important;
+    font-size: 13px !important;
+  }
+
+  .admin-nav-label {
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .card,
+  .payment-report-card {
+    width: 100%;
+    margin: 12px 0;
+    padding: 14px;
+    border-radius: 8px;
+  }
+
+  .report-header,
+  .payment-report-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .report-title {
+    margin: 0 !important;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .back-btn {
+    width: 100%;
+  }
+
+  .filters {
+    gap: 8px;
+    flex-direction: row;
+  }
+
+  .filter-input {
+    min-width: 0;
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .filter-checkbox {
+    flex: 1 1 calc(50% - 8px);
+    width: auto;
+  }
+
+  .pagination-wrap {
+    justify-content: center !important;
+    gap: 10px !important;
+    font-size: 15px !important;
+  }
+
+  .pagination-pill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .table-responsive .records-table {
+    min-width: 680px;
+  }
+
+  .records-title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .records-table-wrap {
+    margin: 0 -2px;
+  }
+
+  .records-table-wrap .records-table {
+    min-width: 940px;
+  }
+
+  .records-actions {
+    align-items: stretch !important;
+    justify-content: center !important;
+  }
+
+  .csv-button-group {
+    width: 100%;
+  }
+
+  .csv-button-group .primary-btn {
+    flex: 1 1 150px;
+    width: auto !important;
+    text-align: center;
+  }
+
+  .records-pagination {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .admin-nav {
+    flex-wrap: nowrap !important;
+  }
+}

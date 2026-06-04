@@ -47,16 +47,17 @@ const PaidPaymentsTable = () => {
   if (loading) return <div style={{ padding: '50px', textAlign: 'center' }}>🔄 डेटा लोड होत आहे...</div>;
 
   return (
-    <div className="card">
+    <div className="card payment-report-card">
       {/* 🟢 मागे जाण्याचे बटन आणि टायटल */}
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', gap: '15px' }}>
+      <div className="report-header payment-report-header" style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', gap: '15px' }}>
         <button 
+          className="back-btn"
           onClick={() => window.history.back()} 
           style={{ padding: '8px 15px', backgroundColor: '#607d8b', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}
         >
           ◀ मागे
         </button>
-        <h2 style={{ color: '#2e7d32', margin: 0 }}>पूर्ण दिलेले पेमेंट रिपोर्ट (एकूण: {paidRecordsOnly.length})</h2>
+        <h2 className="report-title" style={{ color: '#2e7d32', margin: 0 }}>पूर्ण दिलेले पेमेंट रिपोर्ट (एकूण: {paidRecordsOnly.length})</h2>
       </div>
 
       <div className="filters">
@@ -108,7 +109,7 @@ const PaidPaymentsTable = () => {
       </div>
 
       {/* 🟢 पेज नेव्हिगेशन (◀ पाने 1 / 1 ▶) */}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', gap: '20px', fontSize: '18px' }}>
+      <div className="pagination-wrap" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px', gap: '20px', fontSize: '18px' }}>
         <button 
           disabled={currentPage === 1} 
           onClick={() => setCurrentPage(prev => prev - 1)}
