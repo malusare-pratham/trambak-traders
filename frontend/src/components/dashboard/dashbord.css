@@ -122,6 +122,46 @@ table {
   border-bottom: 1px solid #eee;
 }
 
+/* ---------- Invoice Preview Responsiveness ---------- */
+.invoice-right {
+  overflow: hidden;
+}
+
+.invoice-right .header h1 {
+  line-height: 1.15;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.invoice-right .details {
+  gap: 18px;
+}
+
+.invoice-right .details > div {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.invoice-right .details p,
+.invoice-right .summary p {
+  overflow-wrap: anywhere;
+}
+
+.invoice-right .table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.invoice-right .footer {
+  gap: 18px;
+}
+
+.invoice-right .footer-left,
+.invoice-right .footer-right {
+  min-width: 0;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
   .invoice-container {
@@ -174,18 +214,49 @@ table {
     border-radius: 10px;
   }
 
+  .invoice-right .header h1 {
+    font-size: 28px;
+  }
+
+  .invoice-right .details {
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1.35;
+  }
+
+  .invoice-right .details > div {
+    flex: 0 1 auto;
+  }
+
+  .invoice-right .details p {
+    margin: 2px 0;
+  }
+
   .form-row {
     flex-direction: column;
     gap: 10px;
     margin-bottom: 12px;
   }
 
-  .table-wrapper table {
-    min-width: 560px;
+  .invoice-right .table-wrapper table {
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .invoice-right .table-wrapper th,
+  .invoice-right .table-wrapper td {
+    padding: 8px 6px;
+    font-size: 12px;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .summary span {
     width: 105px !important;
+  }
+
+  .invoice-right .footer {
+    align-items: flex-end;
   }
 }
 
@@ -197,6 +268,43 @@ table {
   .invoice-left,
   .invoice-right {
     padding: 14px;
+  }
+
+  .invoice-right .header h1 {
+    font-size: 24px;
+  }
+
+  .invoice-right .header p {
+    margin: 6px 0;
+  }
+
+  .invoice-right .table-wrapper {
+    overflow-x: visible;
+  }
+
+  .invoice-right .table-wrapper table {
+    min-width: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .invoice-right .table-wrapper th,
+  .invoice-right .table-wrapper td {
+    padding: 7px 4px;
+    font-size: 11px;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .invoice-right .summary {
+    padding: 12px;
+  }
+
+  .invoice-right .summary span {
+    display: block !important;
+    width: auto !important;
+    margin-bottom: 2px;
   }
 
   .market-strip {
@@ -230,6 +338,11 @@ table {
   .footer {
     gap: 16px;
     margin-top: 28px !important;
+  }
+
+  .invoice-right .footer {
+    display: flex !important;
+    justify-content: space-between !important;
   }
 }
 /*-----------------------------------------*/

@@ -385,15 +385,18 @@ th,
   .filters {
     flex-direction: column;
     align-items: stretch;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .filter-input {
     width: 100%;
+    grid-column: 1 / -1;
   }
 
   .filter-checkbox {
     display: inline-flex;
-    width: calc(50% - 6px);
+    width: 100%;
     min-width: 0;
     justify-content: center;
     font-size: 13px;
@@ -1025,6 +1028,15 @@ input::-webkit-inner-spin-button {
   overflow-wrap: anywhere;
 }
 
+.records-list-header {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.records-today-badge {
+  white-space: nowrap;
+}
+
 .records-table-wrap {
   border-radius: 8px;
 }
@@ -1056,6 +1068,83 @@ input::-webkit-inner-spin-button {
 .records-pagination {
   min-height: 40px;
   white-space: nowrap;
+}
+
+.admin-nav::-webkit-scrollbar,
+.stats-grid::-webkit-scrollbar,
+.table-responsive::-webkit-scrollbar,
+.records-table-wrap::-webkit-scrollbar,
+.responsive-invoice-table-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.admin-nav,
+.stats-grid,
+.table-responsive,
+.records-table-wrap,
+.responsive-invoice-table-wrap {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.responsive-invoice-overlay {
+  box-sizing: border-box;
+}
+
+.invoice-modal-actions {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.responsive-invoice-paper {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.responsive-invoice-header h1 {
+  line-height: 1.15;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.responsive-invoice-details {
+  gap: 18px;
+}
+
+.responsive-invoice-details > div {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.responsive-invoice-details p,
+.responsive-invoice-summary p {
+  overflow-wrap: anywhere;
+}
+
+.responsive-invoice-table-wrap {
+  width: 100%;
+  overflow-x: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+.responsive-invoice-table {
+  min-width: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.responsive-invoice-table th,
+.responsive-invoice-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.responsive-invoice-footer {
+  gap: 18px;
+}
+
+.responsive-invoice-footer > div {
+  min-width: 0;
 }
 
 .pagination-wrap {
@@ -1111,6 +1200,23 @@ input::-webkit-inner-spin-button {
 }
 
 @media (max-width: 600px) {
+  .stats-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 12px;
+    margin: 12px 0;
+    padding: 2px 2px 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .stat-card {
+    flex: 0 0 210px;
+    min-width: 210px;
+  }
+
   .admin-container {
     padding: 10px;
   }
@@ -1121,7 +1227,7 @@ input::-webkit-inner-spin-button {
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    scrollbar-width: none;
   }
 
   .admin-nav-item {
@@ -1166,17 +1272,24 @@ input::-webkit-inner-spin-button {
   .filters {
     gap: 8px;
     flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .filter-input {
     min-width: 0;
+    grid-column: 1 / -1;
     flex: 1 1 100%;
     width: 100%;
   }
 
   .filter-checkbox {
-    flex: 1 1 calc(50% - 8px);
+    flex: 1 1 auto;
     width: auto;
+    min-height: 40px;
+    padding: 8px 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
   }
 
   .pagination-wrap {
@@ -1196,7 +1309,21 @@ input::-webkit-inner-spin-button {
 
   .records-title {
     font-size: 20px;
-    text-align: center;
+    text-align: left;
+  }
+
+  .records-list-header {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px !important;
+  }
+
+  .records-today-badge {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
   }
 
   .records-table-wrap {
@@ -1226,10 +1353,98 @@ input::-webkit-inner-spin-button {
     width: 100%;
     justify-content: center;
   }
+
+  .responsive-invoice-overlay {
+    padding: 12px !important;
+  }
+
+  .invoice-modal-actions {
+    width: 100%;
+    gap: 8px !important;
+  }
+
+  .invoice-modal-actions button {
+    flex: 1 1 150px;
+    padding: 10px 12px !important;
+  }
+
+  .responsive-invoice-paper {
+    padding: 20px !important;
+    border-radius: 10px !important;
+  }
+
+  .responsive-invoice-header {
+    margin-bottom: 14px !important;
+  }
+
+  .responsive-invoice-header h1 {
+    font-size: 25px !important;
+  }
+
+  .responsive-invoice-details {
+    flex-direction: column !important;
+    gap: 2px;
+    margin-bottom: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  .responsive-invoice-details > div {
+    flex: 0 1 auto;
+  }
+
+  .responsive-invoice-details p {
+    margin: 2px 0 !important;
+  }
+
+  .responsive-invoice-summary {
+    padding: 12px !important;
+  }
+
+  .responsive-invoice-table-wrap {
+    overflow-x: visible;
+  }
+
+  .responsive-invoice-table {
+    min-width: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .responsive-invoice-table th,
+  .responsive-invoice-table td {
+    padding: 7px 4px !important;
+    font-size: 11px;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .responsive-invoice-footer {
+    justify-content: space-between !important;
+    margin-top: 28px !important;
+  }
 }
 
 @media (max-width: 380px) {
   .admin-nav {
     flex-wrap: nowrap !important;
+  }
+
+  .responsive-invoice-paper {
+    padding: 16px !important;
+  }
+
+  .responsive-invoice-header h1 {
+    font-size: 22px !important;
+  }
+
+  .responsive-invoice-table {
+    min-width: 0;
+  }
+
+  .responsive-invoice-table th,
+  .responsive-invoice-table td {
+    padding: 6px 3px !important;
+    font-size: 10px;
   }
 }

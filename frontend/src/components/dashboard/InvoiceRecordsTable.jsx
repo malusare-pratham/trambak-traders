@@ -88,11 +88,11 @@ const InvoiceRecordsTable = ({ records, onEditClick, onRecordsChange }) => {
   };
 
   return (
-    <div className="card">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <h2 style={{ borderBottom: '2px solid #2196F3', display: 'inline-block', margin: 0 }}>रेकॉर्ड्स</h2>
+    <div className="card records-card">
+      <div className="records-list-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <h2 className="records-title" style={{ borderBottom: '2px solid #2196F3', display: 'inline-block', margin: 0 }}>रेकॉर्ड्स</h2>
         {filterDate === today && (
-          <span style={{ backgroundColor: '#e8f5e9', color: '#2e7d32', padding: '5px 12px', borderRadius: '15px', fontSize: '12px', fontWeight: 'bold' }}>
+          <span className="records-today-badge" style={{ backgroundColor: '#e8f5e9', color: '#2e7d32', padding: '5px 12px', borderRadius: '15px', fontSize: '12px', fontWeight: 'bold' }}>
             ● आजचे रेकॉर्ड्स
           </span>
         )}
@@ -116,7 +116,7 @@ const InvoiceRecordsTable = ({ records, onEditClick, onRecordsChange }) => {
         </label>
       </div>
 
-      <div className="table-responsive" style={{ width: '100%', overflowX: 'hidden' }}>
+      <div className="table-responsive records-table-wrap" style={{ width: '100%', overflowX: 'auto' }}>
         <table className="records-table" style={{ width: '100%', fontSize: '14px', borderCollapse: 'collapse', textAlign: 'center' }}>
           <thead>
             <tr style={{ backgroundColor: '#f8f9fa' }}>
@@ -170,20 +170,20 @@ const InvoiceRecordsTable = ({ records, onEditClick, onRecordsChange }) => {
       </div>
 
       {selectedInvoice && (
-        <div className="invoice-modal-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 2000, overflowY: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
-          <div style={{ marginBottom: '10px', display: 'flex', gap: '15px' }}>
+        <div className="invoice-modal-overlay responsive-invoice-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 2000, overflowY: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
+          <div className="invoice-modal-actions" style={{ marginBottom: '10px', display: 'flex', gap: '15px' }}>
             <button onClick={handleDownloadInvoicePDF} style={{ padding: '10px 20px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>PDF डाउनलोड 📥</button>
             <button onClick={() => setSelectedInvoice(null)} style={{ padding: '10px 20px', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>बंद करा ✖</button>
           </div>
 
-          <div ref={invoiceRef} style={{ width: '100%', maxWidth: '500px', backgroundColor: 'white', padding: '35px', borderRadius: '15px', fontFamily: 'sans-serif', color: '#333' }}>
-            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <div className="responsive-invoice-paper" ref={invoiceRef} style={{ width: '100%', maxWidth: '500px', backgroundColor: 'white', padding: '35px', borderRadius: '15px', fontFamily: 'sans-serif', color: '#333' }}>
+            <div className="responsive-invoice-header" style={{ textAlign: 'center', marginBottom: '20px' }}>
               <h1 style={{ margin: 0, fontSize: '32px', fontWeight: 'bold' }}>त्र्यंबकराज ट्रेडर्स</h1>
               <p style={{ margin: '5px 0' }}>मका व्यापार व्यवसाय</p>
               <hr style={{ border: 'none', borderTop: '1px solid #ccc', marginTop: '15px' }} />
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', marginBottom: '20px', lineHeight: '1.6' }}>
+            <div className="responsive-invoice-details" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', marginBottom: '20px', lineHeight: '1.6' }}>
               <div>
                 {/* ✅ डेटाबेसचा बिल नंबर इथे डिस्प्ले होईल */}
                 <p><strong>बिल क्रमांक:</strong> {selectedInvoice.billNo || selectedInvoice.displayBillNo}</p>
@@ -198,7 +198,8 @@ const InvoiceRecordsTable = ({ records, onEditClick, onRecordsChange }) => {
               </div>
             </div>
 
-            <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '10px' }}>
+            <div className="responsive-invoice-table-wrap">
+            <table className="responsive-invoice-table" style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '10px' }}>
               <thead>
                 <tr style={{ backgroundColor: '#5DADE2', color: 'white' }}>
                   <th style={{ padding: '12px', textAlign: 'left' }}>पीक</th>
@@ -223,8 +224,9 @@ const InvoiceRecordsTable = ({ records, onEditClick, onRecordsChange }) => {
                 </tr>
               </tbody>
             </table>
+            </div>
 
-            <div style={{ backgroundColor: '#f2f2f2', padding: '15px', borderRadius: '10px', marginTop: '10px' }}>
+            <div className="responsive-invoice-summary" style={{ backgroundColor: '#f2f2f2', padding: '15px', borderRadius: '10px', marginTop: '10px' }}>
               <p style={{ margin: 0 }}>एकूण रक्कम: ₹{selectedInvoice.totalAmount}</p>
               <p style={{ margin: 0 }}>दिलेली रक्कम: ₹{selectedInvoice.paidAmount}</p>
               <p style={{ margin: 0, color: '#e74c3c', fontWeight: 'bold', fontSize: '18px' }}>बाकी रक्कम: ₹{selectedInvoice.totalAmount - selectedInvoice.paidAmount}</p>
@@ -232,7 +234,7 @@ const InvoiceRecordsTable = ({ records, onEditClick, onRecordsChange }) => {
 
             <p style={{ textAlign: 'center', marginTop: '30px', fontStyle: 'italic' }}>धन्यवाद</p>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px', alignItems: 'flex-end' }}>
+            <div className="responsive-invoice-footer" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px', alignItems: 'flex-end' }}>
               <div style={{ fontWeight: 'bold' }}>व्यापारी</div>
               <div style={{ textAlign: 'center' }}>
                 <div style={{ marginBottom: '5px' }}>स्वाक्षरी</div>
@@ -243,14 +245,14 @@ const InvoiceRecordsTable = ({ records, onEditClick, onRecordsChange }) => {
         </div>
       )}
 
-      <div className="csv-actions" style={{ marginTop: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ display: "flex", gap: "10px" }}>
+      <div className="csv-actions records-actions" style={{ marginTop: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div className="csv-button-group" style={{ display: "flex", gap: "10px" }}>
           <button className="primary-btn" onClick={handleExportCSV} style={{ backgroundColor: '#2196F3', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer' }}>CSV एक्सपोर्ट 📤</button>
           <input type="file" accept=".csv" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImportCSV} />
           <button className="primary-btn" onClick={() => fileInputRef.current.click()} style={{ backgroundColor: '#2196F3', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '5px', cursor: 'pointer' }}>CSV इंपोर्ट 📥</button>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#e3f2fd', padding: '5px 15px', borderRadius: '25px' }}>
+        <div className="records-pagination" style={{ display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#e3f2fd', padding: '5px 15px', borderRadius: '25px' }}>
           <button disabled={currentPage === 1} onClick={() => setCurrentPage(prev => prev - 1)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#2196F3', fontSize: '18px' }}>◀</button>
           <span style={{ fontWeight: 'bold', color: '#2196F3' }}>पाने {currentPage} / {totalPages || 1}</span>
           <button disabled={currentPage >= totalPages} onClick={() => setCurrentPage(prev => prev + 1)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: '#2196F3', fontSize: '18px' }}>▶</button>

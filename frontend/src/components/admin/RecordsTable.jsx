@@ -152,35 +152,37 @@ const RecordsTable = ({ records = [], onRecordsChange, onEditClick }) => {
       </div>
 
       {selectedInvoice && (
-        <div className="invoice-modal-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 2000, overflowY: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
-          <div style={{ marginBottom: '10px', display: 'flex', gap: '15px' }}>
+        <div className="invoice-modal-overlay responsive-invoice-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 2000, overflowY: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
+          <div className="invoice-modal-actions" style={{ marginBottom: '10px', display: 'flex', gap: '15px' }}>
             <button onClick={handleDownloadInvoicePDF} style={{ padding: '10px 20px', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>PDF डाउनलोड 📥</button>
             <button onClick={() => setSelectedInvoice(null)} style={{ padding: '10px 20px', backgroundColor: '#f44336', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>बंद करा ✖</button>
           </div>
-          <div ref={invoiceRef} style={{ width: '100%', maxWidth: '500px', backgroundColor: 'white', padding: '35px', borderRadius: '15px', fontFamily: 'sans-serif', color: '#333' }}>
-            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <div className="responsive-invoice-paper" ref={invoiceRef} style={{ width: '100%', maxWidth: '500px', backgroundColor: 'white', padding: '35px', borderRadius: '15px', fontFamily: 'sans-serif', color: '#333' }}>
+            <div className="responsive-invoice-header" style={{ textAlign: 'center', marginBottom: '20px' }}>
               <h1 style={{ margin: 0, fontSize: '32px', fontWeight: 'bold' }}>त्र्यंबकराज ट्रेडर्स</h1>
               <p style={{ margin: '5px 0' }}>मका व्यापार व्यवसाय</p>
               <hr style={{ border: 'none', borderTop: '1px solid #ccc', marginTop: '15px' }} />
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', marginBottom: '20px', lineHeight: '1.6' }}>
+            <div className="responsive-invoice-details" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', marginBottom: '20px', lineHeight: '1.6' }}>
               {/* ✅ बदल: इथे पण डेटाबेसचा बिल नंबर दाखवण्याची सोय केली */}
               <div><p><strong>बिल क्रमांक:</strong> {selectedInvoice.billNo || selectedInvoice.displayBillNo}</p><p><strong>तारीख:</strong> {selectedInvoice.date}</p><p><strong>शेतकऱ्याचे नाव:</strong> {selectedInvoice.farmerName}</p><p><strong>मोबाईल:</strong> {selectedInvoice.mobile}</p></div>
               <div><p><strong>व्यापाऱ्याचे नाव:</strong> त्र्यंबकराज ट्रेडर्स</p><p><strong>मोबाईल:</strong> +91 9876543210</p><p><strong>पत्ता:</strong> त्र्यंबकराज पेट्रोलियम निमगाव,<br/>नांदगाव रोड, ता.मालेगाव, जि. नाशिक.</p></div>
             </div>
-            <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '10px' }}>
+            <div className="responsive-invoice-table-wrap">
+            <table className="responsive-invoice-table" style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '10px' }}>
               <thead><tr style={{ backgroundColor: '#5DADE2', color: 'white' }}><th style={{ padding: '12px', textAlign: 'left' }}>पीक</th><th style={{ padding: '12px' }}>प्रमाण</th><th style={{ padding: '12px' }}>दर</th><th style={{ padding: '12px' }}>एकूण रक्कम</th><th style={{ padding: '12px' }}>दिलेली रक्कम</th></tr></thead>
               <tbody style={{ textAlign: 'center', fontSize: '14px' }}>
                 <tr style={{ borderBottom: '1px solid #eee' }}><td style={{ padding: '12px', textAlign: 'left' }}>{selectedInvoice.crop}</td><td>{selectedInvoice.quantity} क्विंटल</td><td>₹{selectedInvoice.rate}</td><td>₹{selectedInvoice.totalAmount}</td><td>₹{selectedInvoice.paidAmount}</td></tr>
                 <tr style={{ backgroundColor: '#F1C40F', fontWeight: 'bold' }}><td colSpan="3" style={{ padding: '10px', textAlign: 'left' }}>एकूण</td><td>₹{selectedInvoice.totalAmount}</td><td>₹{selectedInvoice.paidAmount}</td></tr>
               </tbody>
             </table>
-            <div style={{ backgroundColor: '#f2f2f2', padding: '15px', borderRadius: '10px', marginTop: '10px' }}>
+            </div>
+            <div className="responsive-invoice-summary" style={{ backgroundColor: '#f2f2f2', padding: '15px', borderRadius: '10px', marginTop: '10px' }}>
               <p style={{ margin: 0 }}>एकूण रक्कम: ₹{selectedInvoice.totalAmount}</p><p style={{ margin: 0 }}>दिलेली रक्कम: ₹{selectedInvoice.paidAmount}</p>
               <p style={{ margin: 0, color: '#e74c3c', fontWeight: 'bold', fontSize: '18px' }}>बाकी रक्कम: ₹{selectedInvoice.totalAmount - selectedInvoice.paidAmount}</p>
             </div>
             <p style={{ textAlign: 'center', marginTop: '30px', fontStyle: 'italic' }}>धन्यवाद</p>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px', alignItems: 'flex-end' }}>
+            <div className="responsive-invoice-footer" style={{ display: 'flex', justifyContent: 'space-between', marginTop: '40px', alignItems: 'flex-end' }}>
               <div style={{ fontWeight: 'bold' }}>व्यापारी</div><div style={{ textAlign: 'center' }}><div style={{ marginBottom: '5px' }}>स्वाक्षरी</div><div style={{ fontWeight: 'bold' }}>त्र्यंबकराज ट्रेडर्स</div></div>
             </div>
           </div>

@@ -91,8 +91,8 @@ const AddRecordForm = ({ onRecordAdded, editingRecord, setEditingRecord }) => {
   };
 
   return (
-    <div className="card" id="record-form">
-      <h2>{editingRecord ? "रेकॉर्ड दुरुस्त करा (Edit Mode)" : "नवीन रेकॉर्ड जोडा"}</h2>
+    <div className="card record-form-card" id="record-form">
+      <h2 className="record-form-title">{editingRecord ? "रेकॉर्ड दुरुस्त करा (Edit Mode)" : "नवीन रेकॉर्ड जोडा"}</h2>
       <form onSubmit={handleAddRecord} className="form-grid">
         <div className="form-group"><label>तारीख</label><input type="date" value={date} onChange={(e) => setDate(e.target.value)} required /></div>
         <div className="form-group"><label>शेतकऱ्याचे नाव</label><input type="text" placeholder="नाव टाका" value={farmerName} onChange={(e) => setFarmerName(e.target.value)} required /></div>
@@ -121,7 +121,7 @@ const AddRecordForm = ({ onRecordAdded, editingRecord, setEditingRecord }) => {
         </div>
 
         {editingRecord && (
-          <div className="form-group">
+          <div className="form-group edit-payment-group">
             <label style={{ fontWeight: 'bold', color: 'black' }}>
               आता जमा केलेली रक्कम (₹) - <span style={{ color: 'red' }}>बाकी: ₹{currentDue.toFixed(2)}</span>
             </label>
@@ -135,7 +135,7 @@ const AddRecordForm = ({ onRecordAdded, editingRecord, setEditingRecord }) => {
           </div>
         )}
 
-        <div className="button-container" style={{ marginTop: '20px', display: 'flex', justifyContent: 'flex-start', gap: '15px' }}>
+        <div className="button-container record-form-actions" style={{ marginTop: '20px', display: 'flex', justifyContent: 'flex-start', gap: '15px' }}>
           <button type="submit" className="primary-btn" style={{ padding: '10px 25px' }}>
             {editingRecord ? "रेकॉर्ड अपडेट करा" : "रेकॉर्ड जोडा"}
           </button>
