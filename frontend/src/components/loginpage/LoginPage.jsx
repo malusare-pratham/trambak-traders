@@ -3,6 +3,7 @@ import "./LoginPage.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { apiUrl } from "../../config/api";
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const LoginPage = () => {
   // 🔹 NEW STATE
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   // 🔹 LOGIN FUNCTION
   const handleLogin = async (e) => {
@@ -64,12 +66,20 @@ const LoginPage = () => {
           <div className="input-group">
             <span className="icon">🔒</span>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword((value) => !value)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
           </div>
 
           <div className="forgot">
